@@ -1,15 +1,37 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Row from "./Row";
 
 const Table = () => {
   const [booksList, setBooksList] = useState([]);
+  const [fetchedData, setFetchedData] = useState([]);
+  const [rowCounter, setRowCounter] = useState(0);
 
+ /* useEffect(() => {
   fetch(
     "https://www.googleapis.com/books/v1/users/105271509055432424678/bookshelves/1001/volumes?key=AIzaSyARsqoBp8bf1xt5wPcoT3hxfwubIqODnrA"
   )
     .then((response) => response.json())
-    .then((data) => console.log(data.items))
+    .then((data) => {console.log(data.items)})
     .catch((err) => console.error(err));
+}, [])*/
+
+useEffect(() => {
+    fetch(
+        "https://www.googleapis.com/books/v1/users/105271509055432424678/bookshelves/1001/volumes?key=AIzaSyARsqoBp8bf1xt5wPcoT3hxfwubIqODnrA"
+      )
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        setFetchedData(data);
+      });
+  }, []);
+
+  useEffect(() => {
+    setBooksList(fetchedData.items);
+    console.log(fetchedData.items)
+    console.log(booksList)
+  }, [fetchedData])
 
   const handleRowClick = (e) => {
     console.log(e.target.parentElement);
@@ -21,20 +43,12 @@ const Table = () => {
           <tr>
             <th scope="col">#</th>
             <th scope="col">Title</th>
-            <th scope="col">Author</th>
+            <th scope="col">Authors</th>
             <th scope="col">Print Type</th>
           </tr>
         </thead>
         <tbody>
-          {booksList.map((el) => {
-            return (
-              <Row
-                title={el.volumeInfo.title}
-                authors={el.volumeInfo.authors}
-                printType={el.volumeInfo.printType}
-              />
-            );
-          })}
+
 
           <tr onClick={(e) => handleRowClick(e)}>
             <th scope="row">1</th>
