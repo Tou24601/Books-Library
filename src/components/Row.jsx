@@ -1,14 +1,19 @@
-const Row = ({key, title, authors, printType}) => {
+import { useState, useEffect } from "react";
 
-    const handleRowClick = (e) => {
-        console.log(e.target.parentElement)
-    }
+const Row = ({data, rowNum}) => {
+
+    const [isHighlighted, setIsHighlighted] = useState(false)
+
+    const handleRowClick = () => {
+        setIsHighlighted(!isHighlighted);
+        console.log(data.volumeInfo.description)
+      };
+
   return (
-    <tr onClick={(e) => handleRowClick(e)}>
-      <th scope="row">{key}</th>
-      <td>{title}</td>
-      <td>{authors}</td>
-      <td>{printType}</td>
+    <tr onClick={handleRowClick} className={isHighlighted ? "highlighted" : ""}>
+      <td>{data.volumeInfo.title}</td>
+      <td>{data.volumeInfo.authors}</td>
+      <td>{data.volumeInfo.printType}</td>
     </tr>
   );
 };

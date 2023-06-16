@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
-import Row from "./Row";
+import Tbody from "./Tbody";
 
 const Table = () => {
-  const [booksList, setBooksList] = useState([]);
+  //const [booksList, setBooksList] = useState([]);
   const [fetchedData, setFetchedData] = useState([]);
-  const [rowCounter, setRowCounter] = useState(0);
+  //const [rowCounter, setRowCounter] = useState(0);
 
- /* useEffect(() => {
+   /*useEffect(() => {
   fetch(
     "https://www.googleapis.com/books/v1/users/105271509055432424678/bookshelves/1001/volumes?key=AIzaSyARsqoBp8bf1xt5wPcoT3hxfwubIqODnrA"
   )
@@ -16,6 +16,25 @@ const Table = () => {
 }, [])*/
 
 useEffect(() => {
+  const getData = async () => {
+    const url = "https://www.googleapis.com/books/v1/users/105271509055432424678/bookshelves/1001/volumes?key=AIzaSyARsqoBp8bf1xt5wPcoT3hxfwubIqODnrA";
+
+    try {
+      const resp = await fetch (url);
+      const data = await resp.json();
+      // Do anything you need to do to
+      // data before this call:
+      console.log(data.items)
+      setFetchedData(data.items);
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
+  getData();
+}, []);
+  
+/*useEffect(() => {
     fetch(
         "https://www.googleapis.com/books/v1/users/105271509055432424678/bookshelves/1001/volumes?key=AIzaSyARsqoBp8bf1xt5wPcoT3hxfwubIqODnrA"
       )
@@ -24,51 +43,44 @@ useEffect(() => {
       })
       .then((data) => {
         setFetchedData(data);
+        console.log(data)
       });
   }, []);
+*/
+    /*const fetchBooks = async (url) => {
+      try {
+        const res = await fetch(url);
+        const data = await res.json();
+        if (data.length > 0) {
+          setFetchedData(data);
+          console.log(fetchedData)
+        }
+      } catch (e) {
+        console.error(e);
+      }
+    };
 
-  useEffect(() => {
+    useEffect(() => {
+        fetchBooks("https://www.googleapis.com/books/v1/users/105271509055432424678/bookshelves/1001/volumes?key=AIzaSyARsqoBp8bf1xt5wPcoT3hxfwubIqODnrA");
+    }, [])*/
+
+/*  useEffect(() => {
     setBooksList(fetchedData.items);
-    console.log(fetchedData.items)
-    console.log(booksList)
-  }, [fetchedData])
+    //console.log(fetchedData.items);
+    console.log(booksList);
+  }, [fetchedData]);*/
 
-  const handleRowClick = (e) => {
-    console.log(e.target.parentElement);
-  };
   return (
     <div className="container pt-5">
       <table className="table">
         <thead>
           <tr>
-            <th scope="col">#</th>
             <th scope="col">Title</th>
             <th scope="col">Authors</th>
             <th scope="col">Print Type</th>
           </tr>
         </thead>
-        <tbody>
-
-
-          <tr onClick={(e) => handleRowClick(e)}>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td>Larry</td>
-            <td>the Bird</td>
-            <td>@twitter</td>
-          </tr>
-        </tbody>
+          <Tbody fetchedData={fetchedData} />
       </table>
     </div>
   );
