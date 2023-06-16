@@ -5,13 +5,13 @@ const Tbody = ({ fetchedData }) => {
 
 
   return (
-    <tbody>
+    <div>
       {fetchedData.map((el) => {
         return (
           <Row key={el.id} data={el}  />
         );
       })}
-    </tbody>
+    </div>
   );
 };
 

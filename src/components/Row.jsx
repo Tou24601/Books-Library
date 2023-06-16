@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import SelectedRow from "./SelectedRow"
 
 const Row = ({data, rowNum}) => {
 
@@ -6,15 +7,18 @@ const Row = ({data, rowNum}) => {
 
     const handleRowClick = () => {
         setIsHighlighted(!isHighlighted);
-        console.log(data.volumeInfo.description)
+        //console.log()
       };
 
   return (
-    <tr onClick={handleRowClick} className={isHighlighted ? "highlighted" : ""}>
-      <td>{data.volumeInfo.title}</td>
-      <td>{data.volumeInfo.authors}</td>
-      <td>{data.volumeInfo.printType}</td>
-    </tr>
+    <div>
+    <div onClick={handleRowClick} className={isHighlighted ? "highlighted d-flex flex-row flex-wrap border border-end-0 border-start-0 border-bottom-0 " : "d-flex flex-row flex-wrap border border-end-0 border-start-0 border-bottom-0"}>
+      <div className="col-4 p-3">{data.volumeInfo.title}</div>
+      <div className="col-4 p-3">{data.volumeInfo.authors}</div>
+      <div className="col-4 p-3">{data.volumeInfo.printType}</div>
+      <SelectedRow data={data} isHighlighted={isHighlighted} />
+    </div>
+    </div>
   );
 };
 
