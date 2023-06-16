@@ -24,7 +24,7 @@ useEffect(() => {
       const data = await resp.json();
       // Do anything you need to do to
       // data before this call:
-      console.log(data.items)
+      //console.log(data.items)
       setFetchedData(data.items);
     } catch (err) {
       console.error(err);
