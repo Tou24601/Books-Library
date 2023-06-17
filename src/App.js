@@ -1,13 +1,21 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
-import logo from './logo.svg';
-import Table from './components/Table';
-import './App.css';
+import "bootstrap/dist/css/bootstrap.min.css";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Layout from "./pages/Layout";
+import Home from "./pages/Home";
+import SameAuthorsTable from "./pages/SameAuthorsTable";
+import NoPage from "./pages/NoPage";
+import "./App.css";
 
 function App() {
   return (
-    <div className="App">
-      <Table />
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="sameAuthorsTable" element={<SameAuthorsTable />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 

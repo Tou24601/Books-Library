@@ -2,12 +2,32 @@
   border: 3px solid blue;
 }*/
 
+body {
+  text-align: center;
+}
+
+a:link, a:visited {
+  color: black;
+}
+
 .coverImage {
   height: 300px;
 }
 
 .nonvisible {
   display: none;
+}
+
+.closeSign {
+  width: 20px;
+  height: 20px;
+  top: 25px;
+  right: 40px;
+  z-index: 1;
+}
+
+.clickable {
+  cursor: pointer;
 }
 
 .highlighted {

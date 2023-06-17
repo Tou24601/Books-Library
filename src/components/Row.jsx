@@ -1,23 +1,52 @@
 import { useState, useEffect } from "react";
-import SelectedRow from "./SelectedRow"
+import SelectedRow from "./SelectedRow";
+import XSign from "../assets/x_sign.png";
 
-const Row = ({data, rowNum}) => {
+const Row = ({ data }) => {
+  const [isHighlighted, setIsHighlighted] = useState(false);
 
-    const [isHighlighted, setIsHighlighted] = useState(false)
+  const handleRowClick = () => {
+    setIsHighlighted(true);
+  };
 
-    const handleRowClick = () => {
-        setIsHighlighted(!isHighlighted);
-        //console.log()
-      };
+  const handleCloseClick = () => {
+    setIsHighlighted(false);
+  };
 
   return (
-    <div>
-    <div onClick={handleRowClick} className={isHighlighted ? "highlighted d-flex flex-row flex-wrap border border-end-0 border-start-0 border-bottom-0 " : "d-flex flex-row flex-wrap border border-end-0 border-start-0 border-bottom-0"}>
-      <div className="col-4 p-3"><p className={isHighlighted ? "fs-5 fw-bold" : ""}>{data.volumeInfo.title}</p></div>
-      <div className="col-4 p-3"><p className={isHighlighted ? "fs-5 fw-bold" : ""}>{data.volumeInfo.authors}</p></div>
-      <div className="col-4 p-3"><p className={isHighlighted ? "fs-5 fw-bold" : ""}>{data.volumeInfo.printType}</p></div>
-      <SelectedRow data={data} isHighlighted={isHighlighted} />
-    </div>
+    <div className="position-relative">
+              <img
+          src={XSign}
+          alt="close"
+          onClick={handleCloseClick}
+          className={isHighlighted ? "closeSign position-absolute clickable" : "nonvisible"}
+        />
+      <div
+        onClick={handleRowClick}
+        className={
+          isHighlighted
+            ? "highlighted d-flex flex-row flex-wrap border border-end-0 border-start-0 border-bottom-0 "
+            : "d-flex flex-row flex-wrap border border-end-0 border-start-0 border-bottom-0 clickable"
+        }
+      >
+
+        <div className="col-4 p-3">
+          <p className={isHighlighted ? "fs-5 fw-bold" : ""}>
+            {data.volumeInfo.title}
+          </p>
+        </div>
+        <div className="col-4 p-3">
+          <p className={isHighlighted ? "fs-5 fw-bold" : ""}>
+            {data.volumeInfo.authors}
+          </p>
+        </div>
+        <div className="col-4 p-3">
+          <p className={isHighlighted ? "fs-5 fw-bold" : ""}>
+            {data.volumeInfo.printType}
+          </p>
+        </div>
+        <SelectedRow data={data} isHighlighted={isHighlighted} />
+      </div>
     </div>
   );
 };

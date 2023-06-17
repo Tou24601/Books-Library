@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 import Row from "./Row";
 
-const Tbody = ({ fetchedData }) => {
+const Tbody = ({ tableData }) => {
 
 
   return (
     <div>
-      {fetchedData.map((el) => {
+      {tableData.map((el) => {
         return (
           <Row key={el.id} data={el}  />
         );

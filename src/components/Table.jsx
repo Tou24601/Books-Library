@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import Tbody from "./Tbody";
 
-const Table = () => {
+const Table = ({tableData}) => {
   //const [booksList, setBooksList] = useState([]);
-  const [fetchedData, setFetchedData] = useState([]);
+  //const [fetchedData, setFetchedData] = useState([]);
   //const [rowCounter, setRowCounter] = useState(0);
 
    /*useEffect(() => {
@@ -15,16 +15,13 @@ const Table = () => {
     .catch((err) => console.error(err));
 }, [])*/
 
-useEffect(() => {
+/*useEffect(() => {
   const getData = async () => {
     const url = "https://www.googleapis.com/books/v1/users/105271509055432424678/bookshelves/1001/volumes?key=AIzaSyARsqoBp8bf1xt5wPcoT3hxfwubIqODnrA";
 
     try {
       const resp = await fetch (url);
       const data = await resp.json();
-      // Do anything you need to do to
-      // data before this call:
-      //console.log(data.items)
       setFetchedData(data.items);
     } catch (err) {
       console.error(err);
@@ -32,7 +29,7 @@ useEffect(() => {
   }
 
   getData();
-}, []);
+}, []);*/
   
 /*useEffect(() => {
     fetch(
@@ -77,7 +74,7 @@ useEffect(() => {
             <p className="col-4 fw-bold fs-5">Authors</p>
             <p className="col-4 fw-bold fs-5">Print Type</p>
         </div>
-          <Tbody fetchedData={fetchedData} />
+          <Tbody tableData={tableData} />
     </div>
   );
 };
