@@ -3,16 +3,19 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./pages/Layout";
 import Home from "./pages/Home";
 import SameAuthorsTable from "./pages/SameAuthorsTable";
-import NoPage from "./pages/NoPage";
+import SelectedRow from "./pages/SelectedRow";
 import "./App.css";
 
 function App() {
+
+  
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
-          <Route path="sameAuthorsTable" element={<SameAuthorsTable />} />
+          <Route path="selectedRow" element={<SelectedRow />} />
+          <Route path=":sameAuthorsTable" element={<SameAuthorsTable />} />
         </Route>
       </Routes>
     </BrowserRouter>

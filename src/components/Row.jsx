@@ -1,8 +1,8 @@
-import { useState, useEffect } from "react";
-import SelectedRow from "./SelectedRow";
+import { useState } from "react";
+import SelectedRowComp from "./SelectedRowComp";
 import XSign from "../assets/x_sign.png";
 
-const Row = ({ data }) => {
+const Row = ({ data, tableData }) => {
   const [isHighlighted, setIsHighlighted] = useState(false);
 
   const handleRowClick = () => {
@@ -25,7 +25,7 @@ const Row = ({ data }) => {
         onClick={handleRowClick}
         className={
           isHighlighted
-            ? "highlighted d-flex flex-row flex-wrap border border-end-0 border-start-0 border-bottom-0 "
+            ? "highlighted d-flex flex-row flex-wrap border border-end-0 border-start-0 border-bottom-0"
             : "d-flex flex-row flex-wrap border border-end-0 border-start-0 border-bottom-0 clickable"
         }
       >
@@ -45,7 +45,7 @@ const Row = ({ data }) => {
             {data.volumeInfo.printType}
           </p>
         </div>
-        <SelectedRow data={data} isHighlighted={isHighlighted} />
+        <SelectedRowComp data={data} isHighlighted={isHighlighted} tableData={tableData} />
       </div>
     </div>
   );
