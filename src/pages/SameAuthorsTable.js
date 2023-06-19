@@ -17,7 +17,7 @@ const SameAuthorsTable = () => {
       (item) => item.volumeInfo.authors[0] === authorsNames
     );
     setTableData(newArr);
-  }, [data]);
+  }, [data, authorsNames]);
 
   return <Table tableData={tableData} />;
 };
