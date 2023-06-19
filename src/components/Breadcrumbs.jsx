@@ -10,7 +10,6 @@ const Breadcrumbs = () => {
     .filter((crumb) => crumb !== "")
     .map((crumb) => {
       currentLink = +`/${crumb}`;
-      console.log(currentLink);
       return (
         <div className="crumb" key={Date.now()}>
           <Link to={"/"}>home/</Link>

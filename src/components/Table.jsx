@@ -1,12 +1,7 @@
-import { useEffect } from "react";
 import Tbody from "./Tbody";
 import Breadcrumbs from "./Breadcrumbs";
 
 const Table = ({ tableData }) => {
-  useEffect(() => {
-    console.log(tableData);
-  }, [tableData]);
-
   return (
     <div className="container pt-5">
       <Breadcrumbs />

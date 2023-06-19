@@ -1,12 +1,8 @@
 import { useState, useEffect } from "react";
 import Table from "../components/Table";
-import { useLocation } from "react-router-dom";
 
 const Home = () => {
   const [fetchedData, setFetchedData] = useState([]);
-  const location = useLocation();
-  const name = location.pathname;
-  console.log(name);
 
   useEffect(() => {
     const getData = async () => {
@@ -18,7 +14,8 @@ const Home = () => {
         const data = await resp.json();
         setFetchedData(data.items);
       } catch (err) {
-        console.error(err);
+        console.log(err)
+        alert("Error");
       }
     };
 

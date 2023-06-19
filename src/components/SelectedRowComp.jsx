@@ -33,12 +33,12 @@ const SelectedRowComp = ({ data, isHighlighted, tableData }) => {
       <div className="col-11 col-md-5 mx-3">
         <img
           src={imgUrl}
-          alt="IMAGE NOT AVAILABLE"
+          alt="NOT AVAILABLE"
           className="coverImage mx-5 mb-5"
         />
       </div>
       <div className="col-11 col-md-7 text-center text-md-start ps-4">
-        <h5>Description:</h5>
+        <h5 className="fw-bold">Description:</h5>
         <p className="mx-1 col-11 col-md-5 ">{description}</p>
         <p>{pageCount}</p>
         <Link to={`/${authors}`} state={tableData}>
