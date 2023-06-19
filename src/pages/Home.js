@@ -1,9 +1,12 @@
 import { useState, useEffect } from "react";
 import Table from "../components/Table";
-import Breadcrumbs from "../components/Breadcrumbs";
+import { useLocation } from "react-router-dom";
 
 const Home = () => {
   const [fetchedData, setFetchedData] = useState([]);
+  const location = useLocation();
+  const name = location.pathname;
+  console.log(name);
 
   useEffect(() => {
     const getData = async () => {
@@ -25,7 +28,6 @@ const Home = () => {
   return (
     <>
       <Table tableData={fetchedData} />
-      <Breadcrumbs />
     </>
   );
 };

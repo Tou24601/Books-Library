@@ -15,12 +15,14 @@ const Row = ({ data, tableData }) => {
 
   return (
     <div className="position-relative">
-              <img
-          src={XSign}
-          alt="close"
-          onClick={handleCloseClick}
-          className={isHighlighted ? "closeSign position-absolute clickable" : "nonvisible"}
-        />
+      <img
+        src={XSign}
+        alt="close"
+        onClick={handleCloseClick}
+        className={
+          isHighlighted ? "closeSign position-absolute clickable" : "nonvisible"
+        }
+      />
       <div
         onClick={handleRowClick}
         className={
@@ -29,7 +31,6 @@ const Row = ({ data, tableData }) => {
             : "d-flex flex-row flex-wrap border border-end-0 border-start-0 border-bottom-0 clickable"
         }
       >
-
         <div className="col-4 p-3">
           <p className={isHighlighted ? "fs-5 fw-bold" : ""}>
             {data.volumeInfo.title}
@@ -45,7 +46,11 @@ const Row = ({ data, tableData }) => {
             {data.volumeInfo.printType}
           </p>
         </div>
-        <SelectedRowComp data={data} isHighlighted={isHighlighted} tableData={tableData} />
+        <SelectedRowComp
+          data={data}
+          isHighlighted={isHighlighted}
+          tableData={tableData}
+        />
       </div>
     </div>
   );
